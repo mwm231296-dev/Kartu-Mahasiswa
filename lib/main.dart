@@ -16,11 +16,66 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         useMaterial3: true,
       ),
-      home: const ProfilPage(),
+      home: const HelloWorldPage(),
     );
   }
 }
 
+// ====================== HALAMAN HELLO WORLD ======================
+class HelloWorldPage extends StatelessWidget {
+  const HelloWorldPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF5F7F6),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Hello World!',
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF00695C),
+              ),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Tekan tombol di bawah untuk melihat\nKartu Mahasiswa',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16, color: Colors.black54),
+            ),
+            const SizedBox(height: 40),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilPage()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF00695C),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: const Text(
+                'Lihat Kartu Mahasiswa',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ====================== HALAMAN KARTU MAHASISWA ======================
 class ProfilPage extends StatelessWidget {
   const ProfilPage({super.key});
 
@@ -69,20 +124,18 @@ class ProfilPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7F6),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF00695C),
+        foregroundColor: Colors.white,
+        title: const Text('Kartu Mahasiswa'),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Column(
             children: [
-              const Text(
-                'Profil Saya',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87,
-                ),
-              ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 10),
 
               // ===== KARTU MAHASISWA =====
               Container(
@@ -125,8 +178,8 @@ class ProfilPage extends StatelessWidget {
                           Container(
                             width: 80,
                             height: 80,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFE0F2F1),
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFE0F2F1),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
@@ -166,9 +219,9 @@ class ProfilPage extends StatelessWidget {
                             children: [
                               Icon(Icons.school, color: Colors.teal[700], size: 22),
                               const SizedBox(width: 12),
-                              Column(
+                              const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     'PROGRAM STUDI',
                                     style: TextStyle(
@@ -195,9 +248,9 @@ class ProfilPage extends StatelessWidget {
                             children: [
                               Icon(Icons.menu_book, color: Colors.teal[700], size: 22),
                               const SizedBox(width: 12),
-                              Column(
+                              const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     'SEMESTER',
                                     style: TextStyle(
@@ -222,7 +275,6 @@ class ProfilPage extends StatelessWidget {
                           const Divider(),
                           const SizedBox(height: 16),
 
-                          // Halo Flutter
                           const Text(
                             'Halo Flutter!',
                             style: TextStyle(
